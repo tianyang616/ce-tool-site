@@ -2,118 +2,17 @@
 
 import { useState } from "react";
 
-type Lang = "en" | "zh";
+type Lang = "zh" | "en";
 
 const content = {
-  en: {
-    version: "v3.0 Stable",
-    languageButton: "中文",
-    nav: {
-      features: "Features",
-      workflow: "Workflow",
-      download: "Download",
-      faq: "FAQ",
-    },
-    badge: "Engineering Excel Automation Toolkit",
-    title1: "CE Database Sync,",
-    title2: "Fixed in One Click.",
-    description:
-      "A Windows desktop tool designed for engineering Excel database checking, CE / Full Data synchronization, risk reporting, date standardization, and one-click cleanup.",
-    primaryButton: "Download v3.0",
-    secondaryButton: "View Workflow",
-    metrics: [
-      { label: "Core Functions", value: "6+" },
-      { label: "Risk Levels", value: "3" },
-      { label: "Platform", value: "Windows" },
-    ],
-    demo: {
-      title: "One-click processing preview",
-      selectedFiles: "Selected files",
-      fullData: "Full_Data.xlsx",
-      ceData: "CE_Data.xlsx",
-      result: "✓ Sync completed",
-      message: "Fixed file, risk report, and logs generated successfully.",
-    },
-    featuresTitle: "Core Features",
-    featuresSubtitle:
-      "Built for repetitive engineering Excel workflows where accuracy, consistency, and clean reports matter.",
-    features: [
-      {
-        title: "CE / Full Data Sync",
-        description:
-          "Compare CE Data with Full Data, identify missing records, and generate synchronized output files.",
-      },
-      {
-        title: "OSM to Local PN",
-        description:
-          "Detect OSM part numbers and convert them to matching Local PN records based on reference data.",
-      },
-      {
-        title: "Risk Report",
-        description:
-          "Classify issues into high, medium, and low risk levels, then export a structured review report.",
-      },
-      {
-        title: "Date Standardization",
-        description:
-          "Unify inconsistent date formats and reduce manual Excel formatting work.",
-      },
-      {
-        title: "Color Marking",
-        description:
-          "Optionally highlight fixed, risky, or newly generated records for easier checking.",
-      },
-      {
-        title: "One-click Cleanup",
-        description:
-          "Clear unnecessary Excel cell colors and keep the database visually clean.",
-      },
-    ],
-    workflowTitle: "How It Works",
-    workflowSubtitle:
-      "The tool follows a simple local workflow. No complicated setup is required for normal users.",
-    workflow: [
-      "Open CE One Click Tool",
-      "Select Full Data and CE Data",
-      "Choose one-click process or single function",
-      "Export fixed file, risk report, and operation logs",
-    ],
-    downloadTitle: "Download",
-    downloadText:
-      "Current version: CE One Click Tool v3.0 Stable for Windows.",
-    downloadNote:
-      "Recommended package: EXE file + README + sample files + output folder.",
-    fileInfo: [
-      "File name: CE_One_Click_Tool_v3.0.exe",
-      "Platform: Windows",
-      "Status: Tested and ready for internal use",
-      "Data processing: Local Excel file processing",
-    ],
-    faqTitle: "FAQ",
-    faq: [
-      {
-        q: "Does this website process Excel files online?",
-        a: "No. The current website is only an introduction and download page. Excel files are processed locally by the Windows desktop tool.",
-      },
-      {
-        q: "Can the tool be used without Python?",
-        a: "Yes. The distributed EXE version is designed for users who do not have Python or PyCharm installed.",
-      },
-      {
-        q: "Should users back up their files first?",
-        a: "Yes. Even though the tool generates output files, users should always keep a copy of the original Excel files before processing.",
-      },
-    ],
-    footer:
-      "© 2026 CE One Click Tool. Built as an engineering data automation project.",
-  },
   zh: {
     version: "v3.0 正式版",
-    languageButton: "English",
+    langButton: "English",
     nav: {
       features: "功能",
       workflow: "流程",
       download: "下载",
+      changelog: "版本记录",
       faq: "常见问题",
     },
     badge: "工程 Excel 自动化工具",
@@ -124,15 +23,13 @@ const content = {
     primaryButton: "下载 v3.0",
     secondaryButton: "查看流程",
     metrics: [
-      { label: "核心功能", value: "6+" },
-      { label: "风险等级", value: "3" },
-      { label: "运行平台", value: "Windows" },
+      { value: "6+", label: "核心功能" },
+      { value: "3", label: "风险等级" },
+      { value: "Windows", label: "运行平台" },
     ],
     demo: {
       title: "一键处理预览",
       selectedFiles: "已选择文件",
-      fullData: "Full_Data.xlsx",
-      ceData: "CE_Data.xlsx",
       result: "✓ 同步完成",
       message: "修复文件、风险报告和操作日志已成功生成。",
     },
@@ -181,15 +78,65 @@ const content = {
       "导出修复文件、风险报告和操作日志",
     ],
     downloadTitle: "下载",
-    downloadText:
-      "当前版本：CE One Click Tool v3.0 Windows 正式版。",
-    downloadNote:
-      "推荐发布包：EXE 文件 + 使用说明 + 示例文件 + 输出文件夹。",
+    downloadText: "当前版本：CE One Click Tool v3.0 Windows 正式版。",
+    downloadNote: "当前下载包内包含 Windows EXE 程序文件。",
     fileInfo: [
-      "文件名：CE_One_Click_Tool_v3.0.exe",
+      "文件名：CE_One_Click_Tool_v3.0.zip",
+      "压缩包内容：CE_One_Click_Tool_v3.0.exe",
       "平台：Windows",
       "状态：已测试，可用于内部数据处理",
       "数据处理方式：本地 Excel 文件处理",
+    ],
+    changelogTitle: "版本记录",
+    changelogSubtitle:
+      "这里只保留每个版本最重要的变化，方便快速确认。",
+    releaseNotes: [
+      {
+        version: "v3.0",
+        items: [
+          "界面整体升级为更清爽的浅色风格。",
+          "全流程作为主入口，其他单项功能收纳到“其他工具”。",
+          "设置改为按用户保存，封装后每个人都能保留自己的偏好。",
+        ],
+      },
+      {
+        version: "v2.8",
+        items: [
+          "全流程运行前增加预检查，提前发现常见文件问题。",
+          "综合报告新增 Summary 首页，结果更容易查看。",
+          "输出文件名加入时间戳，方便留档。",
+        ],
+      },
+      {
+        version: "v2.7",
+        items: [
+          "新增设置保存功能，可保留颜色和运行偏好。",
+          "全流程底层结构优化，后续维护更稳定。",
+        ],
+      },
+      {
+        version: "v2.6",
+        items: [
+          "新增独立“全流程处理”页面。",
+          "全流程输出简化为最终 CE 文件和综合报告。",
+          "页面支持滚动，小屏幕也能查看日志。",
+        ],
+      },
+      {
+        version: "v2.5",
+        items: [
+          "处理结果默认生成新文件，原始 CE 文件保持不变。",
+          "CE 工作表支持智能识别，减少表名变化带来的报错。",
+          "新增全流程一键处理入口。",
+        ],
+      },
+      {
+        version: "v2.4",
+        items: [
+          "整合 CE 内检、数据库同步和清除 Excel 颜色功能。",
+          "同步日志改为独立 Excel 输出。",
+        ],
+      },
     ],
     faqTitle: "常见问题",
     faq: [
@@ -208,43 +155,217 @@ const content = {
     ],
     footer: "© 2026 CE One Click Tool。工程数据自动化项目。",
   },
+
+  en: {
+    version: "v3.0 Stable",
+    langButton: "中文",
+    nav: {
+      features: "Features",
+      workflow: "Workflow",
+      download: "Download",
+      changelog: "Release Notes",
+      faq: "FAQ",
+    },
+    badge: "Engineering Excel Automation Toolkit",
+    title1: "CE Database Sync,",
+    title2: "Fixed in One Click.",
+    description:
+      "A Windows desktop tool designed for engineering Excel database checking, CE / Full Data synchronization, risk reporting, date standardization, and one-click cleanup.",
+    primaryButton: "Download v3.0",
+    secondaryButton: "View Workflow",
+    metrics: [
+      { value: "6+", label: "Core Functions" },
+      { value: "3", label: "Risk Levels" },
+      { value: "Windows", label: "Platform" },
+    ],
+    demo: {
+      title: "One-click processing preview",
+      selectedFiles: "Selected files",
+      result: "✓ Sync completed",
+      message: "Fixed file, risk report, and logs generated successfully.",
+    },
+    featuresTitle: "Core Features",
+    featuresSubtitle:
+      "Built for repetitive engineering Excel workflows where accuracy, consistency, and clean reports matter.",
+    features: [
+      {
+        title: "CE / Full Data Sync",
+        description:
+          "Compare CE Data with Full Data, identify missing records, and generate synchronized output files.",
+      },
+      {
+        title: "OSM to Local PN",
+        description:
+          "Detect OSM part numbers and convert them to matching Local PN records based on reference data.",
+      },
+      {
+        title: "Risk Report",
+        description:
+          "Classify issues into high, medium, and low risk levels, then export a structured review report.",
+      },
+      {
+        title: "Date Standardization",
+        description:
+          "Unify inconsistent date formats and reduce manual Excel formatting work.",
+      },
+      {
+        title: "Color Marking",
+        description:
+          "Optionally highlight fixed, risky, or newly generated records for easier checking.",
+      },
+      {
+        title: "One-click Cleanup",
+        description:
+          "Clear unnecessary Excel cell colors and keep the database visually clean.",
+      },
+    ],
+    workflowTitle: "How It Works",
+    workflowSubtitle:
+      "The tool follows a simple local workflow. No complicated setup is required for normal users.",
+    workflow: [
+      "Open CE One Click Tool",
+      "Select Full Data and CE Data",
+      "Choose one-click process or single function",
+      "Export fixed file, risk report, and operation logs",
+    ],
+    downloadTitle: "Download",
+    downloadText: "Current version: CE One Click Tool v3.0 Stable for Windows.",
+    downloadNote: "The download package currently includes the Windows EXE file.",
+    fileInfo: [
+      "File name: CE_One_Click_Tool_v3.0.zip",
+      "Package content: CE_One_Click_Tool_v3.0.exe",
+      "Platform: Windows",
+      "Status: Tested and ready for internal use",
+      "Data processing: Local Excel file processing",
+    ],
+    changelogTitle: "Release Notes",
+    changelogSubtitle:
+      "Key changes from previous versions. Only major updates are listed for quick review.",
+    releaseNotes: [
+      {
+        version: "v3.0",
+        items: [
+          "Redesigned the interface with a cleaner light-style layout.",
+          "Set the full workflow as the main entry, while single tools were moved under Other Tools.",
+          "Settings are now saved per user after packaging, so each user can keep their own preferences.",
+        ],
+      },
+      {
+        version: "v2.8",
+        items: [
+          "Added pre-checks before running the full workflow to detect common file issues earlier.",
+          "Added a Summary sheet to the combined report for easier result review.",
+          "Added timestamps to output file names for easier archiving.",
+        ],
+      },
+      {
+        version: "v2.7",
+        items: [
+          "Added settings save function to keep color and running preferences.",
+          "Optimized the full workflow backend structure for better maintainability.",
+        ],
+      },
+      {
+        version: "v2.6",
+        items: [
+          "Added a dedicated Full Process page.",
+          "Simplified full workflow output into the final CE file and a combined report.",
+          "Added scroll support so logs can be viewed on smaller screens.",
+        ],
+      },
+      {
+        version: "v2.5",
+        items: [
+          "Processing results now generate a new file by default, keeping the original CE file unchanged.",
+          "Added intelligent CE worksheet recognition to reduce errors caused by sheet name changes.",
+          "Added the full workflow one-click processing entry.",
+        ],
+      },
+      {
+        version: "v2.4",
+        items: [
+          "Integrated CE internal check, database sync, and Excel color cleanup functions.",
+          "Changed the sync log to an independent Excel output.",
+        ],
+      },
+    ],
+    faqTitle: "FAQ",
+    faq: [
+      {
+        q: "Does this website process Excel files online?",
+        a: "No. The current website is only an introduction and download page. Excel files are processed locally by the Windows desktop tool.",
+      },
+      {
+        q: "Can the tool be used without Python?",
+        a: "Yes. The distributed EXE version is designed for users who do not have Python or PyCharm installed.",
+      },
+      {
+        q: "Should users back up their files first?",
+        a: "Yes. Even though the tool generates output files, users should always keep a copy of the original Excel files before processing.",
+      },
+    ],
+    footer:
+      "© 2026 CE One Click Tool. Built as an engineering data automation project.",
+  },
 };
 
 export default function Home() {
-  const [lang, setLang] = useState<Lang>("en");
+  const [lang, setLang] = useState<Lang>("zh");
   const t = content[lang];
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <section className="mx-auto max-w-6xl px-6 py-8">
-        <nav className="flex items-center justify-between border-b border-white/10 pb-6">
-          <div>
-            <p className="text-lg font-semibold">CE One Click Tool</p>
-            <p className="text-sm text-slate-400">{t.version}</p>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="hidden gap-6 text-sm text-slate-300 md:flex">
-              <a href="#features" className="hover:text-white">
-                {t.nav.features}
-              </a>
-              <a href="#workflow" className="hover:text-white">
-                {t.nav.workflow}
-              </a>
-              <a href="#download" className="hover:text-white">
-                {t.nav.download}
-              </a>
-              <a href="#faq" className="hover:text-white">
-                {t.nav.faq}
-              </a>
+        <nav className="border-b border-white/10 pb-6">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-lg font-semibold">CE One Click Tool</p>
+              <p className="text-sm text-slate-400">{t.version}</p>
             </div>
 
-            <button
-              onClick={() => setLang(lang === "en" ? "zh" : "en")}
-              className="rounded-full border border-emerald-400/40 px-4 py-2 text-sm text-emerald-300 transition hover:bg-emerald-400/10"
-            >
-              {t.languageButton}
-            </button>
+            <div className="flex flex-wrap items-center gap-3 text-sm text-slate-300">
+              <a
+                href="#features"
+                className="rounded-full border border-white/10 px-4 py-2 transition hover:bg-white/10 hover:text-white"
+              >
+                {t.nav.features}
+              </a>
+
+              <a
+                href="#workflow"
+                className="rounded-full border border-white/10 px-4 py-2 transition hover:bg-white/10 hover:text-white"
+              >
+                {t.nav.workflow}
+              </a>
+
+              <a
+                href="#download"
+                className="rounded-full border border-white/10 px-4 py-2 transition hover:bg-white/10 hover:text-white"
+              >
+                {t.nav.download}
+              </a>
+
+              <a
+                href="#changelog"
+                className="rounded-full border border-white/10 px-4 py-2 transition hover:bg-white/10 hover:text-white"
+              >
+                {t.nav.changelog}
+              </a>
+
+              <a
+                href="#faq"
+                className="rounded-full border border-white/10 px-4 py-2 transition hover:bg-white/10 hover:text-white"
+              >
+                {t.nav.faq}
+              </a>
+
+              <button
+                onClick={() => setLang(lang === "zh" ? "en" : "zh")}
+                className="rounded-full border border-emerald-400/40 px-4 py-2 text-sm text-emerald-300 transition hover:bg-emerald-400/10"
+              >
+                {t.langButton}
+              </button>
+            </div>
           </div>
         </nav>
 
@@ -270,6 +391,7 @@ export default function Home() {
               >
                 {t.primaryButton}
               </a>
+
               <a
                 href="#workflow"
                 className="rounded-xl border border-white/20 px-6 py-3 text-center font-semibold text-white transition hover:bg-white/10"
@@ -307,10 +429,10 @@ export default function Home() {
               <div className="space-y-4 font-mono text-sm">
                 <p className="text-slate-400">{t.demo.selectedFiles}</p>
                 <p className="rounded-lg bg-slate-800 px-4 py-3">
-                  {t.demo.fullData}
+                  Full_Data.xlsx
                 </p>
                 <p className="rounded-lg bg-slate-800 px-4 py-3">
-                  {t.demo.ceData}
+                  CE_Data.xlsx
                 </p>
 
                 <div className="mt-6 rounded-lg border border-emerald-400/30 bg-emerald-400/10 px-4 py-4">
@@ -371,7 +493,7 @@ export default function Home() {
                 className="rounded-2xl border border-white/10 bg-white/5 p-5"
               >
                 <p className="text-sm text-emerald-300">
-                  {lang === "en" ? "Step" : "步骤"} {index + 1}
+                  {lang === "zh" ? "步骤" : "Step"} {index + 1}
                 </p>
                 <p className="mt-4 font-medium">{step}</p>
               </div>
@@ -399,6 +521,32 @@ export default function Home() {
           >
             {t.primaryButton}
           </a>
+        </section>
+
+        <section id="changelog" className="py-20">
+          <h2 className="text-3xl font-bold">{t.changelogTitle}</h2>
+          <p className="mt-3 max-w-2xl text-slate-400">
+            {t.changelogSubtitle}
+          </p>
+
+          <div className="mt-10 space-y-5">
+            {t.releaseNotes.map((release) => (
+              <div
+                key={release.version}
+                className="rounded-2xl border border-white/10 bg-white/5 p-6"
+              >
+                <div className="mb-4 inline-flex rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-sm font-semibold text-emerald-300">
+                  {release.version}
+                </div>
+
+                <ul className="space-y-2 text-sm leading-6 text-slate-300">
+                  {release.items.map((item) => (
+                    <li key={item}>- {item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section id="faq" className="py-20">
