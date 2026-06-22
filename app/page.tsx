@@ -394,7 +394,7 @@ export default function Home() {
           </div>
 
           <a
-            href="https://github.com/tianyang616/ce-tool-site/releases"
+            href="https://github.com/tianyang616/ce-tool-site/releases/download/v3.0.0/CE_One_Click_Tool_v3.0.zip"
             target="_blank"
             rel="noreferrer"
             className="mt-6 inline-flex rounded-xl bg-emerald-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-emerald-300"
